@@ -29,13 +29,13 @@ jobs:
         dotnet-version: 7.0.x
     - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
       env:
-        MINVER_VERSION: ${{ secrets.MINVER_VERSION }}
+        MINVERVERSIONOVERRIDE: ${{ secrets.MINVER_VERSION }}
       run: ./build.sh
     - if: matrix.runs-on == 'windows-latest' && github.ref != 'refs/heads/main' && !contains(github.ref, 'refs/tags/')
       env:
-        MINVER_VERSION: ${{ secrets.MINVER_VERSION }}
+        MINVERVERSIONOVERRIDE: ${{ secrets.MINVER_VERSION }}
       run: ./build.ps1
     - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
-      env:
-        MINVER_VERSION: ${{ secrets.MINVER_VERSION }}
+      env:        
+        MINVERVERSIONOVERRIDE: ${{ secrets.MINVER_VERSION }}
       run: ./build.ps1
