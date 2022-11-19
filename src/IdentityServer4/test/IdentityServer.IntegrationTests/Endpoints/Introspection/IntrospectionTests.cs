@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -181,7 +182,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Introspection
                 Token = tokenResponse.AccessToken
             });
 
-            var values = introspectionResponse.Json.Deserialize<Dictionary<string, object>>();
+            var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(introspectionResponse.Json.ToString());
 
             values["aud"].GetType().Name.Should().Be("String");
             values["iss"].GetType().Name.Should().Be("String");
@@ -220,7 +221,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Introspection
                 Token = tokenResponse.AccessToken
             });
 
-            var values = introspectionResponse.Json.Deserialize<Dictionary<string, object>>();
+            var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(introspectionResponse.Json.ToString());
 
             values["aud"].GetType().Name.Should().Be("String");
             values["iss"].GetType().Name.Should().Be("String");
