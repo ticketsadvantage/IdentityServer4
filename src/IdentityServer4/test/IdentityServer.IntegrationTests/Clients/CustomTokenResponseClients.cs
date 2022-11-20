@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
@@ -52,7 +53,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -80,7 +81,7 @@ namespace IdentityServer.IntegrationTests.Clients
             response.TokenType.Should().Be("Bearer");
             response.IdentityToken.Should().BeNull();
             response.RefreshToken.Should().BeNull();
-            
+
 
             // token content
             var payload = GetPayload(response);
@@ -117,7 +118,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -171,7 +172,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -242,7 +243,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -281,7 +282,7 @@ namespace IdentityServer.IntegrationTests.Clients
 
         private Dictionary<string, object> GetFields(TokenResponse response)
         {
-            return response.Json.ToObject<Dictionary<string, object>>();
+            return JObject.Parse(response.Json.ToString()).ToObject<Dictionary<string, object>>();
         }
 
         private Dictionary<string, object> GetPayload(TokenResponse response)
