@@ -16,6 +16,6 @@ steps:
   - task: NuGetCommand@2
     inputs:
       command: 'push'
-      packagesToPush: '$(Build.DefaultWorkingDirectory)/src/**/*.nupkg'
+      packagesToPush: '$(System.DefaultWorkingDirectory)/src/**/*.nupkg'
       nuGetFeedType: 'internal'
       publishVstsFeed: '4645071d-da7d-471c-9447-d2607af2bc8f/ef9cf9bb-3a1f-4941-b4ef-44cc6a2cd8a7'
