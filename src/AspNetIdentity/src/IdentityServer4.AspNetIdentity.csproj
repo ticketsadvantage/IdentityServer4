@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Cnblogs.IdentityServer4.AspNetIdentity</PackageId>
+    <PackageId>XNow.IdentityServer4.AspNetIdentity</PackageId>
     <TargetFrameworks>net8.0</TargetFrameworks>
 
     <Description>ASP.NET Core Identity Integration for IdentityServer4</Description>
