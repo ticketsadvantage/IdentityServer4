@@ -12,3 +12,20 @@ steps:
   - task: Bash@3
     inputs:
       filePath: '$(System.DefaultWorkingDirectory)/build.sh'
+
+  - task: NuGetCommand@2
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/*.csproj'
+      versioningScheme: 'byPrereleaseNumber'
+      majorVersion: '1'
+      minorVersion: '0'
+      patchVersion: '0'
+      includeSymbols: true
+  
+  - task: NuGetCommand@2
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: '4645071d-da7d-471c-9447-d2607af2bc8f/ef9cf9bb-3a1f-4941-b4ef-44cc6a2cd8a7'
