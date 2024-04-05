@@ -1,41 +1,14 @@
-name: 'CI'
+name: 'XNow ID Server 4'
 
-on:
-  push:
-    branches:
-    - main
-    - features/**
-    tags:
-    - '*.*.*'
-  pull_request:
 
-env:
-  DOTNET_NOLOGO: true
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+trigger: none
 
-jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        runs-on: [macOS-latest, ubuntu-latest, windows-latest]
-    name: ${{ matrix.runs-on }}
-    runs-on: ${{ matrix.runs-on }}
-    steps: 
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 7.0.x
-    - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
-      env:
-        MINVERVERSIONOVERRIDE: ${{ secrets.MINVER_VERSION }}
-      run: ./build.sh
-    - if: matrix.runs-on == 'windows-latest' && github.ref != 'refs/heads/main' && !contains(github.ref, 'refs/tags/')
-      env:
-        MINVERVERSIONOVERRIDE: ${{ secrets.MINVER_VERSION }}
-      run: ./build.ps1
-    - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
-      env:        
-        MINVERVERSIONOVERRIDE: ${{ secrets.MINVER_VERSION }}
-      run: ./build.ps1
+pr: none
+
+pool:
+  vmImage: "windows-latest"
+
+steps:
+  - task: Bash@3
+    inputs:
+      filePath: '$(System.DefaultWorkingDirectory)/build.sh'
