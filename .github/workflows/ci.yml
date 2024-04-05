@@ -16,7 +16,7 @@ steps:
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
-      packagesToPack: '**/*.csproj'
+      packagesToPack: '**/IdentityServer4*.csproj'
       versioningScheme: 'byPrereleaseNumber'
       majorVersion: '1'
       minorVersion: '0'
