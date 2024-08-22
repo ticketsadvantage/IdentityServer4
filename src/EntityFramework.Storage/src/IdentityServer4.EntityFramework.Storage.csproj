@@ -8,7 +8,6 @@
     <Authors>Brock Allen;Dominick Baier;Scott Brady</Authors>
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer;EntityFramework</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
 
     <PackageProjectUrl>https://github.com/cnblogs/IdentityServer4</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -28,7 +27,6 @@
   <PropertyGroup>
     <ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true'">True</ContinuousIntegrationBuild>
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">True</ContinuousIntegrationBuild>
-    <Version>1.0.0</Version>
 
   </PropertyGroup>
 

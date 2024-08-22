@@ -9,7 +9,6 @@
     <AssemblyName>IdentityServer4.AspNetIdentity</AssemblyName>
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer;ASP.NET Identity</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
 
     <PackageProjectUrl>https://github.com/cnblogs/IdentityServer4</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -29,8 +28,6 @@
   <PropertyGroup>
     <ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true'">True</ContinuousIntegrationBuild>
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">True</ContinuousIntegrationBuild>
-    <Version>1.0.0</Version>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 
